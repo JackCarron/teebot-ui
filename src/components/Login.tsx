@@ -1,7 +1,10 @@
 import React, { useState, FormEvent } from 'react';
-import Amplify, { Auth } from 'aws-amplify';
+import { Auth } from 'aws-amplify';
+import { useHistory } from 'react-router-dom';
 
 const Login = () => {
+  const history = useHistory();
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -18,9 +21,15 @@ const Login = () => {
     console.log(`Submitting with username: ${username} and password: ${password}`);
     try {
       const signInResponse = await Auth.signIn(username, password);
-      alert('Sign in successful' + signInResponse);
+      if (signInResponse.challengeName === 'NEW_PASSWORD_REQUIRED') {
+        // SET NEW PASSWORD
+        // const newPassword = await Auth.completeNewPassword(signInResponse, "password");
+      }
+      // TODO: Put user in context
+      history.push("/time-selector");
     } catch (ex) {
-      alert(ex);
+      console.log(ex);
+      alert('Sign In Fail, Try again')
     }
     
   };

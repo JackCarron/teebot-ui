@@ -1,9 +1,11 @@
 import React, { FormEvent, useEffect, useState } from 'react';
 import { User } from '../types/User';
-import { BASE_API_URL } from '../constants';
+import { API_NAME, BASE_API_URL } from '../constants';
 import SelectComponent from './SelectComponent';
 import { v4 as uuidv4 } from 'uuid';
 import './styles.css';
+// import { API } from '@aws-amplify/api';
+import { Auth, API } from 'aws-amplify';
 
 export interface TeebotTime {
   teeBotId: string;
@@ -27,13 +29,10 @@ const defaultState: TeebotTime = {teeBotId: uuidv4(), teeBotCourse: 'Los Verdes'
 
 const getTeeBotListByUserId = async (userId: string) => {
   try {
-    const response = await fetch(BASE_API_URL + `teebottime?userId=${userId}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+    const response = await API.get(API_NAME, `/teebottime?userId=${userId}`, {
+      headers: {Authorization: `Bearer ${await (await Auth.currentSession()).getIdToken().getJwtToken()}`?? ''}
     });
-    const data = await response.json();
+    const data = await response;
     console.log(data);
     return data;
   } catch (error) {
@@ -58,7 +57,7 @@ const deleteTeeBotId = async (teebotId: string) => {
 }
 
 const TeebotTeeTimeSelector = ({user}: TeebotTeeTimeSelectorProps) => {
-  const [state, setState] = useState<TeebotTime>({...defaultState, userId: user.userId});
+  const [state, setState] = useState<TeebotTime>({...defaultState, userId: ''});
   const [selectedTeeTimes, setSelectedTeeTimes] = useState<TeebotTime[]>([]);
 
   const handleStateChange = (event: any) => {
@@ -73,11 +72,13 @@ const TeebotTeeTimeSelector = ({user}: TeebotTeeTimeSelectorProps) => {
   };
 
   useEffect(() => {
-    getTeeBotListByUserId(user.userId).then(selectedTeeTimes => {
-      setSelectedTeeTimes(selectedTeeTimes);
-      setState({...defaultState, userId: user.userId});
-    }); 
-  }, [user])
+    Auth.currentAuthenticatedUser().then((currentAuthUser) => {
+      getTeeBotListByUserId(currentAuthUser.username).then(selectedTeeTimes => {
+        setSelectedTeeTimes(selectedTeeTimes);
+        setState({...defaultState, userId: currentAuthUser.username});
+      }); 
+    })
+  }, [])
 
   const handleDelete = (index: number): void => {
     deleteTeeBotId(selectedTeeTimes[index].teeBotId)
@@ -88,14 +89,12 @@ const TeebotTeeTimeSelector = ({user}: TeebotTeeTimeSelectorProps) => {
 
   const saveTeeBotTime = async () => {
     try {
-      const response = await fetch(BASE_API_URL + 'teebottime', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-          },
+      const response = await API.post(API_NAME, `/teebottime`, {
+        headers: {Authorization: `Bearer ${await (await Auth.currentSession()).getIdToken().getJwtToken()}`?? ''},
         body: JSON.stringify(state)
-        });
-      const data = await response.json();
+      });
+      const data = await response;
+      console.log(data);
     } catch (error) {
       console.error(error);
     }
@@ -104,7 +103,7 @@ const TeebotTeeTimeSelector = ({user}: TeebotTeeTimeSelectorProps) => {
   return (
     <div>
       <header>
-        <p>Hello {user.userId}</p>
+        <p>Hello {state.userId}</p>
       </header>
       <section>
         <form onSubmit={handleSubmit}>

@@ -6,6 +6,7 @@ import { HashRouter, Route, Switch } from 'react-router-dom';
 import TeebotTeeTimeSelector from './components/TeebotTeeTimeSelector';
 import { ContactPreference, User } from './types/User';
 import CreateUser from './components/CreateUser';
+import LandingPage from './components/LandingPage';
 
 const user: User = {
   userId: 'john.jack.carron@gmail.com',
@@ -23,6 +24,7 @@ function App() {
         <Route path="/login" component={() => <Login />} />
         <Route path="/register" component={() => <CreateUser />} />
         <Route path="/time-selector" component={() => <TeebotTeeTimeSelector user={user}/>} />
+        <Route path="/" component={() => <LandingPage />} />
       </Switch>
     </HashRouter>
       </header>
