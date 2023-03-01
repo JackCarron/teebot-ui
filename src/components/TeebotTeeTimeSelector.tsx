@@ -1,6 +1,6 @@
 import React, { FormEvent, useEffect, useState } from 'react';
 import { User } from '../types/User';
-import { API_NAME, BASE_API_URL } from '../constants';
+import { API_NAME } from '../constants';
 import SelectComponent from './SelectComponent';
 import { v4 as uuidv4 } from 'uuid';
 import './styles.css';
@@ -21,10 +21,6 @@ interface TeebotTeeTimeSelectorProps {
   user: User;
 }
 
-const getUserTeeTimes = (user: User) :TeebotTime[] => {
-  return [];
-}
-
 const defaultState: TeebotTime = {teeBotId: uuidv4(), teeBotCourse: 'Los Verdes', teeBotDate:'', teeBotStartTime: '', teeBotTimeEndTime: '', userId: ''};
 
 const getTeeBotListByUserId = async (userId: string) => {
@@ -42,13 +38,10 @@ const getTeeBotListByUserId = async (userId: string) => {
 
 const deleteTeeBotId = async (teebotId: string) => {
   try {
-    const response = await fetch(`${BASE_API_URL}teebottime/${teebotId}`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+    const response = await API.del(API_NAME, `/teebottime/${teebotId}`, {
+      headers: {Authorization: `Bearer ${await (await Auth.currentSession()).getIdToken().getJwtToken()}`?? ''}
     });
-    const data = await response.json();
+    const data = await response;
     console.log(data);
     return data;
   } catch (error) {
@@ -91,7 +84,7 @@ const TeebotTeeTimeSelector = ({user}: TeebotTeeTimeSelectorProps) => {
     try {
       const response = await API.post(API_NAME, `/teebottime`, {
         headers: {Authorization: `Bearer ${await (await Auth.currentSession()).getIdToken().getJwtToken()}`?? ''},
-        body: JSON.stringify(state)
+        body: state
       });
       const data = await response;
       console.log(data);
@@ -165,7 +158,6 @@ const TeebotTeeTimeSelector = ({user}: TeebotTeeTimeSelectorProps) => {
           </tbody>
         </table>
       </section>
-      <button onClick={saveTeeBotTime}>Save Tee Bot Time List</button>
     </div>
   );
 };
