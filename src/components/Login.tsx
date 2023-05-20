@@ -26,7 +26,7 @@ const Login = () => {
         // const newPassword = await Auth.completeNewPassword(signInResponse, "password");
       }
       // TODO: Put user in context
-      history.push("/time-selector");
+      history.push("/search");
     } catch (ex) {
       console.log(ex);
       alert('Sign In Fail, Try again')

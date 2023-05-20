@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 interface Props {
   name: string
-  options: string[];
+  options: {label:string; value:string;}[];
   value: string;
   onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
   children?: React.ReactNode;
@@ -10,12 +10,12 @@ interface Props {
 
 const SelectComponent = ({ options, value, onChange, children, name }: Props) => {
   return (
-    <div>
+    <div className='form-field'>
       {children}
       <select name={name} value={value} onChange={onChange}>
         {options.map((option) => (
-          <option key={option} value={option}>
-            {option}
+          <option key={option.value} value={option.value}>
+            {option.label}
           </option>
         ))}
       </select>

@@ -17,3 +17,68 @@ table {
     border: 1px solid black;
     padding: 8px;
   }  
+
+/* Mobile-friendly form layout */
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 300px;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-field label {
+  font-weight: bold;
+}
+
+.form-field input[type="date"],
+.form-field input[type="time"],
+.form-field select {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.form-field select {
+  appearance: none;
+  background-color: #fff;
+  /* background-image: url("dropdown-arrow.png"); Replace with your arrow image */
+  background-position: right center;
+  background-repeat: no-repeat;
+  background-size: 16px;
+  padding-right: 2rem;
+}
+
+.form-submit {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.form-submit button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 600px) {
+  .form-field input[type="date"],
+  .form-field input[type="time"],
+  .form-field select {
+    width: 100%;
+  }
+}
