@@ -4,8 +4,8 @@ import { API_NAME } from '../constants';
 import SelectComponent from './SelectComponent';
 import { v4 as uuidv4 } from 'uuid';
 import './styles.css';
-// import { API } from '@aws-amplify/api';
 import { Auth, API } from 'aws-amplify';
+import { TeebotSearchParamTable } from './TeebotSearchParamTable';
 
 export interface TeebotSearchParam {
   teebotSearchParamId: string;
@@ -45,19 +45,6 @@ const getTeebotListByUserId = async (userId: string) => {
       headers: {Authorization: `Bearer ${await (await Auth.currentSession()).getIdToken().getJwtToken()}`?? ''}
     });
     const data = await response;
-    return data;
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-const deleteTeebotId = async (teebotId: string) => {
-  try {
-    const response = await API.del(API_NAME, `/teebot-search-params/${teebotId}`, {
-      headers: {Authorization: `Bearer ${await (await Auth.currentSession()).getIdToken().getJwtToken()}`?? ''}
-    });
-    const data = await response;
-    console.log(data);
     return data;
   } catch (error) {
     console.error(error);
@@ -108,13 +95,6 @@ const TeebotTeeTimeSelector = ({user}: TeebotTeeTimeSelectorProps) => {
         setConfig(config);
       })
   }, []);
-
-  const handleDelete = (index: number): void => {
-    deleteTeebotId(selectedTeeTimes[index].teebotSearchParamId)
-    selectedTeeTimes.splice(index, 1);
-    console.log(selectedTeeTimes);
-    setSelectedTeeTimes([...selectedTeeTimes]);
-  }
 
   const saveTeebotTime = async () => {
     try {
@@ -225,29 +205,6 @@ const TeebotTeeTimeSelector = ({user}: TeebotTeeTimeSelectorProps) => {
         />
         <button type="submit">Submit</button>
         </form>
-
-        <table>
-          <thead>
-            <tr>
-              <th>Course</th>
-              <th>Date</th>
-              <th>Start Time</th>
-              <th>End Time</th>
-              <th>Delete</th>
-            </tr>
-          </thead>
-          <tbody>
-            {selectedTeeTimes.map((row, index) => (
-              <tr key={index}>
-                <td>{row.teebotCourse}</td>
-                <td>{row.teebotDate}</td>
-                <td>{row.teebotStartTime}</td>
-                <td>{row.teebotEndTime}</td>
-                <td><button onClick={() => {handleDelete(index)}}>X</button></td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
       </section>
     </div>
   );

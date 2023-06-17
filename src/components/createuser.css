@@ -1,0 +1,43 @@
+.CreateUser {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .CreateUser-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .CreateUser-form label {
+    margin-bottom: 10px;
+  }
+  
+  .CreateUser-form input {
+    margin-left: 5px;
+    padding: 5px;
+  }
+  
+  .CreateUser-form button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    font-size: 16px;
+  }
+  
+  .CreateUser-otpSection {
+    display: flex;
+    align-items: center;
+  }
+  
+  .CreateUser-otpSection label {
+    margin-right: 10px;
+  }
+  
+  .CreateUser-otpButton {
+    padding: 5px 10px;
+    font-size: 16px;
+  }
+  

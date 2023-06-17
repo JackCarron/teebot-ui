@@ -1,6 +1,7 @@
 import React, { useState, FormEvent } from 'react';
 import { Auth } from 'aws-amplify';
 import { useHistory } from 'react-router-dom';
+import TeebotLogo from '../images/Teebot.png';
 
 const Login = () => {
   const history = useHistory();
@@ -26,7 +27,7 @@ const Login = () => {
         // const newPassword = await Auth.completeNewPassword(signInResponse, "password");
       }
       // TODO: Put user in context
-      history.push("/search");
+      history.push("/user_home");
     } catch (ex) {
       console.log(ex);
       alert('Sign In Fail, Try again')
@@ -35,19 +36,22 @@ const Login = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Username:
-        <input type="text" value={username} onChange={handleUsernameChange} />
-      </label>
-      <br />
-      <label>
-        Password:
-        <input type="password" value={password} onChange={handlePasswordChange} />
-      </label>
-      <br />
-      <button type="submit">Submit</button>
-    </form>
+    <div>
+      <img className="teebotLogo" src={TeebotLogo}></img>
+      <h4>Login to Teebot</h4><form onSubmit={handleSubmit}>
+        <label>
+          Username:
+          <input type="text" value={username} onChange={handleUsernameChange} />
+        </label>
+        <br />
+        <label>
+          Password:
+          <input type="password" value={password} onChange={handlePasswordChange} />
+        </label>
+        <br />
+        <button className="cta-button" type="submit">Submit</button>
+      </form>
+    </div>
   );
 }
 

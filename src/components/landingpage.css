@@ -1,0 +1,35 @@
+.LandingPage {
+    text-align: center;
+    margin: 0 auto;
+  }
+  
+  .LandingPage-header {
+    padding: 30px;
+    color: #fff;
+  }
+  
+  .LandingPage-content {
+    padding: 40px 0;
+  }
+  
+  .hero {
+    margin-bottom: 40px;
+  }
+  
+  .features {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+  }
+  
+  .feature {
+    flex-basis: 30%;
+    padding: 20px;
+    border-radius: 4px;
+  }
+  
+  .LandingPage-footer {
+    padding: 20px;
+    color: #fff;
+  }
+  

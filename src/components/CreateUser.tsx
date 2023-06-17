@@ -2,10 +2,12 @@ import { Auth } from 'aws-amplify';
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { useHistory } from 'react-router-dom';
 import { ContactPreference, User } from '../types/User';
+import './createuser.css';
+import './styles.css';
+import TeebotLogo from '../images/Teebot.png';
 
 function CreateUser() {
-  const history = useHistory();  
-  // Set up state for the user object
+  const history = useHistory();
   const [user, setUser] = useState<User>({
     userId: '',
     contactPreference: ContactPreference.EMAIL,
@@ -13,8 +15,8 @@ function CreateUser() {
     password: '',
     otp: ''
   });
+  const [showOTP, setShowOTP] = useState(false);
 
-  // Handle input changes and update the user object
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setUser(prevUser => ({
@@ -23,9 +25,9 @@ function CreateUser() {
     }));
   }
 
-  // Handle form submission
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setShowOTP(true);
     try {
       const signUpResponse = await Auth.signUp({
         username: user.userId,
@@ -35,8 +37,6 @@ function CreateUser() {
         },
       });
       console.log(signUpResponse);
-      // const data = await response.json();
-      // console.log(data);
     } catch (error) {
       console.error(error);
     }
@@ -44,32 +44,40 @@ function CreateUser() {
 
   const submitOtp = () => {
     const otpResponse = Auth.confirmSignUp(user.userId, user.otp ?? '');
-    history.push('/login')
+    history.push('/login');
     console.log(otpResponse);
-  
-  } 
+  }
 
-  // Render a form for creating a new user
   return (
-    <><><form onSubmit={handleSubmit}>
-      <label>
-        UserId:
-        <input type="userId" name="userId" value={user.userId} onChange={handleChange} />
-      </label>
-      <label>
-        Email:
-        <input type="email" name="email" value={user.email} onChange={handleChange} />
-      </label>
-      <label>
-        Password:
-        <input type="password" name="password" value={user.password} onChange={handleChange} />
-      </label>
-      <button type="submit">Create User</button>
-    </form>
-      <label>
-        OTP:
-        <input type="otp" name="otp" value={user.otp} onChange={handleChange} />
-      </label></><button onClick={submitOtp}>Submit OTP</button></>
+    <div className="CreateUser">
+      <img className="teebotLogo" src={TeebotLogo} alt="Teebot Logo" />
+      <h4>Welcome to Teebot! Register Now</h4>
+      <form className="CreateUser-form" onSubmit={handleSubmit}>
+        <div className="CreateUser-formColumn">
+          <label>
+            UserId:
+            <input type="text" name="userId" value={user.userId} onChange={handleChange} />
+          </label>
+          <label>
+            Email:
+            <input type="email" name="email" value={user.email} onChange={handleChange} />
+          </label>
+          <label>
+            Password:
+            <input type="password" name="password" value={user.password} onChange={handleChange} />
+          </label>
+        </div>
+        {showOTP ? <div className="CreateUser-formColumn">
+          <label>
+            OTP:
+            <input type="text" name="otp" value={user.otp} onChange={handleChange} />
+          </label>
+          <button className="CreateUser-otpButton" onClick={submitOtp}>Submit OTP</button>
+        </div> : undefined}
+        
+        <button type="submit">Create User</button>
+      </form>
+    </div>
   );
 }
 

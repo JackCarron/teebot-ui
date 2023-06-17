@@ -6,7 +6,7 @@ button {
   margin: 20px;   
 }
 
-table {
+/* table {
     border: 1px solid black;
     border-collapse: collapse;
     background: gray;
@@ -16,7 +16,7 @@ table {
   th, td {
     border: 1px solid black;
     padding: 8px;
-  }  
+  }   */
 
 /* Mobile-friendly form layout */
 .form-container {
@@ -81,4 +81,18 @@ table {
   .form-field select {
     width: 100%;
   }
+}
+
+.teebotLogo {
+    background-color: #fff;
+    padding: 20px;
+}
+
+.cta-button {
+  padding: 10px 20px;
+  font-size: 18px;
+  background-color: rgb(14, 214, 0);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
 }
