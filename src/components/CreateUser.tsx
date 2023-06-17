@@ -53,7 +53,6 @@ function CreateUser() {
       <img className="teebotLogo" src={TeebotLogo} alt="Teebot Logo" />
       <h4>Welcome to Teebot! Register Now</h4>
       <form className="CreateUser-form" onSubmit={handleSubmit}>
-        <div className="CreateUser-formColumn">
           <label>
             UserId:
             <input type="text" name="userId" value={user.userId} onChange={handleChange} />
@@ -66,16 +65,14 @@ function CreateUser() {
             Password:
             <input type="password" name="password" value={user.password} onChange={handleChange} />
           </label>
-        </div>
-        {showOTP ? <div className="CreateUser-formColumn">
-          <label>
+        {showOTP ?
+          <><label>
             OTP:
             <input type="text" name="otp" value={user.otp} onChange={handleChange} />
-          </label>
-          <button className="CreateUser-otpButton" onClick={submitOtp}>Submit OTP</button>
-        </div> : undefined}
+          </label><button className="CreateUser-otpButton" onClick={submitOtp}>Submit OTP</button></>
+         : undefined}
         
-        <button type="submit">Create User</button>
+        {!showOTP ? <button type="submit">Create User</button> : undefined}
       </form>
     </div>
   );

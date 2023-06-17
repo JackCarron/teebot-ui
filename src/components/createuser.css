@@ -1,43 +1,76 @@
 .CreateUser {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 20px;
-  }
-  
-  .CreateUser-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .CreateUser-form label {
-    margin-bottom: 10px;
-  }
-  
-  .CreateUser-form input {
-    margin-left: 5px;
-    padding: 5px;
-  }
-  
-  .CreateUser-form button {
-    margin-top: 10px;
-    padding: 5px 10px;
-    font-size: 16px;
-  }
-  
-  .CreateUser-otpSection {
-    display: flex;
-    align-items: center;
-  }
-  
-  .CreateUser-otpSection label {
-    margin-right: 10px;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.CreateUser-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  max-width: 100%;
+}
+
+.CreateUser-form label {
+  margin-bottom: 10px;
+}
+
+.CreateUser-form input {
+  margin-left: 5px;
+  padding: 3px;
+  font-size: 14px;
+  width: 100%;
+  max-width: 300px;
+  box-sizing: border-box;
+}
+
+.CreateUser-form button {
+  margin-top: 10px;
+  padding: 3px 8px;
+  font-size: 14px;
+  width: 100%;
+  max-width: 200px;
+  box-sizing: border-box;
+}
+
+.CreateUser-otpSection {
+  display: flex;
+  align-items: center;
+}
+
+.CreateUser-otpSection label {
+  margin-right: 10px;
+}
+
+.CreateUser-otpButton {
+  padding: 3px 8px;
+  font-size: 14px;
+}
+
+/* Responsive Styles */
+@media only screen and (max-width: 414px) {
+  .CreateUser-form input,
+  .CreateUser-form button,
   .CreateUser-otpButton {
-    padding: 5px 10px;
-    font-size: 16px;
+    max-width: 100%;
   }
-  
+
+  .CreateUser-otpSection {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .CreateUser-otpSection label {
+    margin-bottom: 5px;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  /* No specific changes for iPad */
+}
+
+@media only screen and (min-width: 1025px) {
+  /* No specific changes for computer devices */
+}

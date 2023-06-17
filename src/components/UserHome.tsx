@@ -13,7 +13,7 @@ const UserHome: React.FC<UserHomeProps> = ({ user }) => {
     <div>
     <div>
         <img className="teebotLogo" src={TeebotLogo}></img>
-        <h1>Welcome, {user.userId}!</h1>
+        <h4>Welcome, {user.userId}!</h4>
         {/* Add more content specific to the user home page */}
     </div>
     <div className="container">

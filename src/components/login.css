@@ -1,0 +1,26 @@
+.teebotLogo {
+    width: 200px; /* Adjust the size as needed */
+    height: auto;
+  }
+  
+  h4 {
+    margin-top: 20px;
+    font-size: 24px;
+  }
+  
+  form {
+    margin-top: 20px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  input {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
