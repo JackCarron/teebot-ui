@@ -17,7 +17,7 @@
   }
   
   .styled-table tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
+    background-color: #8a8a8a;
   }
   
   /* .styled-table tbody tr:hover {

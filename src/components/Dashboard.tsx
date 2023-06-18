@@ -4,6 +4,7 @@ import { User } from "../types/User";
 import { deleteTeebotId, getTeebotListByUserId } from "../utils/teebotUtil";
 import TeebotSearchParamTable from "./TeebotSearchParamTable"
 import { TeebotSearchParam } from "./TeebotTeeTimeSelector";
+import './styles.css'
 
 
 export const Dashboard = () => {
@@ -25,6 +26,7 @@ export const Dashboard = () => {
 
     return (
         <div>
+          <a className='cta-button' href="/#/user_home">User Home</a>
             <h1>Dashboard</h1>
             <TeebotSearchParamTable searchParams={selectedTeeTimes} handleDelete={handleDelete}></TeebotSearchParamTable>
         </div>

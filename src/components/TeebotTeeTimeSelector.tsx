@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 import './styles.css';
 import { Auth, API } from 'aws-amplify';
 import { TeebotSearchParamTable } from './TeebotSearchParamTable';
+import { getConfig, getTeebotCoursesFromConfig, getTeebotListByUserId, saveTeebotTime } from '../utils/teebotUtil';
 
 export interface TeebotSearchParam {
   teebotSearchParamId: string;
@@ -39,30 +40,30 @@ const defaultState: TeebotSearchParam = {
 };
 
 
-const getTeebotListByUserId = async (userId: string) => {
-  try {
-    const response = await API.get(API_NAME, `/teebot-search-params?userId=${userId}`, {
-      headers: {Authorization: `Bearer ${await (await Auth.currentSession()).getIdToken().getJwtToken()}`?? ''}
-    });
-    const data = await response;
-    return data;
-  } catch (error) {
-    console.error(error);
-  }
-}
+// const getTeebotListByUserId = async (userId: string) => {
+//   try {
+//     const response = await API.get(API_NAME, `/teebot-search-params?userId=${userId}`, {
+//       headers: {Authorization: `Bearer ${await (await Auth.currentSession()).getIdToken().getJwtToken()}`?? ''}
+//     });
+//     const data = await response;
+//     return data;
+//   } catch (error) {
+//     console.error(error);
+//   }
+// }
 
-const getConfig = async () => {
-  try {
-    const response = await API.get(API_NAME, `/config`, {
-      headers: {Authorization: `Bearer ${await (await Auth.currentSession()).getIdToken().getJwtToken()}`?? ''}
-    });
-    const data = await response;
-    // console.log(data);
-    return data;
-  } catch (error) {
-    console.error(error);
-  }
-}
+// const getConfig = async () => {
+//   try {
+//     const response = await API.get(API_NAME, `/config`, {
+//       headers: {Authorization: `Bearer ${await (await Auth.currentSession()).getIdToken().getJwtToken()}`?? ''}
+//     });
+//     const data = await response;
+//     // console.log(data);
+//     return data;
+//   } catch (error) {
+//     console.error(error);
+//   }
+// }
 
 const TeebotTeeTimeSelector = ({user}: TeebotTeeTimeSelectorProps) => {
   const [state, setState] = useState<TeebotSearchParam>({...defaultState, userId: ''});
@@ -71,16 +72,12 @@ const TeebotTeeTimeSelector = ({user}: TeebotTeeTimeSelectorProps) => {
 
   const handleStateChange = (event: any) => {
     const { name, value } = event.target;
-    console.log(event);
-    console.log(event.target);
-    console.log(name);
-    console.log(value);
     setState({ ...state, [name]: value });  
   };
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
-    saveTeebotTime();
+    saveTeebotTime(state);
     setSelectedTeeTimes([...selectedTeeTimes, {...state}]);
   };
 
@@ -95,32 +92,6 @@ const TeebotTeeTimeSelector = ({user}: TeebotTeeTimeSelectorProps) => {
         setConfig(config);
       })
   }, []);
-
-  const saveTeebotTime = async () => {
-    try {
-      const response = await API.post(API_NAME, `/teebot-search-params`, {
-        headers: {Authorization: `Bearer ${await (await Auth.currentSession()).getIdToken().getJwtToken()}`?? ''},
-        body: state
-      });
-      const data = await response;
-      console.log(data);
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  const getTeebotCoursesFromConfig = (configFromUI: any): any[] => {
-    console.log(configFromUI);
-    let teebotCourses = [{label: 'Pick a Course', value: 'NO_COURSE_SELECTED'}];
-    if(configFromUI['TeebotCourses'] === undefined) return [];
-    teebotCourses.push(...Object.keys(configFromUI['TeebotCourses']).map(teebotCourseKey => {
-      return {
-        label: configFromUI['TeebotCourses'][teebotCourseKey]['courseName'],
-        value: teebotCourseKey
-      }
-    }));
-    return teebotCourses;
-  }
  
   return (
     <div>

@@ -12,6 +12,7 @@ import UserHome from './components/UserHome';
 import { Dashboard } from './components/Dashboard';
 import { Bookings } from './components/Bookings';
 import TeebotSearchWizard from './components/TeebotSearchWizard';
+import { Auth } from 'aws-amplify';
 
 const user: User = {
   userId: 'john.jack.carron@gmail.com',
@@ -29,10 +30,9 @@ function App() {
         <Route path="/login_or_register" component={() => <LoginRegister />} />
         <Route path="/login" component={() => <Login />} />
         <Route path="/register" component={() => <CreateUser />} />
-        <Route path="/user_home" component={() => <UserHome user={user}/>} />
-        <Route path="/search" component={() => <TeebotTeeTimeSelector user={user}/>} />
-        <Route path="/searchV2" component={() => <TeebotSearchWizard />} />
-        <Route path="/teebot-times" component={() => <Dashboard />} />
+        <Route path="/user_home" component={() => <UserHome/>} />
+        <Route path="/search" component={() => <TeebotSearchWizard />} />
+        <Route path="/teebot_times" component={() => <Dashboard />} />
         <Route path="/bookings" component={() => <Bookings />} />
         <Route path="/" component={() => <LandingPage />} />
       </Switch>

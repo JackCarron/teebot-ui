@@ -19,7 +19,6 @@ const Login = () => {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault();
-    console.log(`Submitting with username: ${username} and password: ${password}`);
     try {
       const signInResponse = await Auth.signIn(username, password);
       if (signInResponse.challengeName === 'NEW_PASSWORD_REQUIRED') {
