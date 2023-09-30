@@ -23,7 +23,6 @@ const TeebotSearchWizard: React.FC = () => {
   const [config, setConfig] = useState<any>({});
 
   useEffect(() => {
-    console.log('here');
     Auth.currentAuthenticatedUser().then((currentAuthUser) => {
       setTeebotSearchParam({...teebotSearchParam, 
         userId: currentAuthUser.username});
@@ -156,24 +155,19 @@ const TeebotSearchWizard: React.FC = () => {
   };
 
   const nextPage = (): void => {
-    console.log(teebotSearchParam);
     if (currentPage < pages.length) {
       setCurrentPage(currentPage + 1);
     }
   };
 
   const previousPage = (): void => {
-    console.log(teebotSearchParam);
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
     }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    console.log(e);
     const { name, value } = e.target;
-    console.log(e.target);
-    console.log("name:" + name + ", value:" + value);
     setTeebotSearchParam((prevTeebotState) => ({
       ...prevTeebotState,
       [name]: value,
@@ -191,7 +185,6 @@ const TeebotSearchWizard: React.FC = () => {
   const submitForm = (): void => {
     // Here, you can perform form validation and submission
     saveTeebotTime(teebotSearchParam);
-    console.log(currentPage + 1);
     setCurrentPage(currentPage + 1);
   };
 

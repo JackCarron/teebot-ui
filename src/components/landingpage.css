@@ -2,60 +2,141 @@
 .LandingPage {
   text-align: center;
   margin: 0 auto;
+  font-family: 'Arial', sans-serif; /* Use a modern font */
 }
 
+/* Update the LandingPage-header styles with vintage baseball jersey-style lettering */
 .LandingPage-header {
-  padding: 30px;
+  background-color: #121a46;
+  padding: 20px;
   color: #fff;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.LandingPage-content {
-  padding: 40px 0;
+/* Style the header title with Lobster font for vintage cursive lettering */
+.LandingPage-header h1 {
+  font-family: 'Lobster', cursive; /* Use the Lobster font for vintage cursive style */
+  font-size: 36px; /* Adjust the font size as needed */
+  text-transform: uppercase; /* Optionally, make the text uppercase for a vintage look */
+  letter-spacing: 2px; /* Add letter-spacing for a vintage feel */
 }
 
+.LandingPage-header-image {
+  width: 200px;
+  filter: invert(100%);
+
+}
+
+/* Style the header subtitle */
+.LandingPage-header p {
+  font-size: 20px; /* Adjust the font size as needed */
+}
+
+
+
+
+/* Update the hero section styles without backdrop-filter */
 .hero {
-  margin-bottom: 40px;
+  background-image: url('../images/MountainCourse.jpg'); /* Replace with an actual image */
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  text-align: center;
+  padding: 40px 0;
+  position: relative; /* Add position relative to create a stacking context */
 }
 
+/* Add a semi-transparent background color to the text container */
+.hero-text-container {
+  background-color: rgba(0, 0, 0, 0.6); /* Adjust the alpha value for transparency */
+  padding: 20px;
+  border-radius: 8px; /* Optional: Add border-radius for rounded corners */
+  display: inline-block; /* Make the container wrap around its contents */
+  max-width: 70%; /* Set a maximum width for the container */
+  margin: 50px;
+  align-items: center;
+}
+
+.hero h2 {
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.hero p {
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.cta-button {
+  padding: 15px 30px;
+  font-size: 20px;
+  background-color: #121a46;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  cursor: pointer; /* Add a pointer cursor to indicate interactivity */
+  outline: none; /* Remove the default focus outline */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+}
+
+/* Style the button on hover */
+.cta-button:hover {
+  background-color: #121a46;
+  transform: scale(1.05); /* Add a slight scale-up effect */
+}
+
+/* Update the features section styles */
 .features {
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 40px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 40px auto; /* Center the features section */
 }
 
 .feature {
-  flex-basis: 30%;
+  max-width: 400px;
+  flex-basis: 45%;
   padding: 20px;
-  border-radius: 4px;
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  text-align: left;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  margin-bottom: 20px; /* Add margin between features */
 }
 
-.LandingPage-footer {
-  padding: 20px;
-  color: #fff;
-}
-
-/* Responsive Styles */
-
-/* iPhone */
-@media only screen and (max-width: 414px) {
+/* Add a media query for smaller screens (e.g., mobile) */
+@media (max-width: 600px) {
   .features {
-    flex-wrap: wrap;
+    justify-content: center; /* Center features on mobile */
   }
 
   .feature {
-    flex-basis: 100%;
-    margin-bottom: 20px;
+    flex-basis: 100%; /* Full width on mobile */
   }
 }
 
-/* iPad */
-@media only screen and (min-width: 768px) and (max-width: 1024px) {
-  .feature {
-    flex-basis: 45%;
-  }
+
+.feature h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #333;
 }
 
-/* Computer */
-@media only screen and (min-width: 1025px) {
-  /* No additional changes for computer devices */
+.feature p {
+  font-size: 16px;
+  color: #666;
+}
+
+/* Footer section styles */
+.LandingPage-footer {
+  background-color: #121a46;
+  padding: 20px 0;
+  color: #fff;
+  text-align: center;
 }

@@ -39,32 +39,6 @@ const defaultState: TeebotSearchParam = {
   teebotNumberOfPlayers: ""
 };
 
-
-// const getTeebotListByUserId = async (userId: string) => {
-//   try {
-//     const response = await API.get(API_NAME, `/teebot-search-params?userId=${userId}`, {
-//       headers: {Authorization: `Bearer ${await (await Auth.currentSession()).getIdToken().getJwtToken()}`?? ''}
-//     });
-//     const data = await response;
-//     return data;
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
-
-// const getConfig = async () => {
-//   try {
-//     const response = await API.get(API_NAME, `/config`, {
-//       headers: {Authorization: `Bearer ${await (await Auth.currentSession()).getIdToken().getJwtToken()}`?? ''}
-//     });
-//     const data = await response;
-//     // console.log(data);
-//     return data;
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
-
 const TeebotTeeTimeSelector = ({user}: TeebotTeeTimeSelectorProps) => {
   const [state, setState] = useState<TeebotSearchParam>({...defaultState, userId: ''});
   const [selectedTeeTimes, setSelectedTeeTimes] = useState<TeebotSearchParam[]>([]);

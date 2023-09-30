@@ -21,7 +21,6 @@ export const deleteTeebotId = async (teebotId: string) => {
         headers: {Authorization: `Bearer ${await (await Auth.currentSession()).getIdToken().getJwtToken()}`?? ''}
       });
       const data = await response;
-      console.log(data);
       return data;
     } catch (error) {
       console.error(error);
@@ -34,7 +33,6 @@ export const getConfig = async () => {
       headers: {Authorization: `Bearer ${await (await Auth.currentSession()).getIdToken().getJwtToken()}`?? ''}
     });
     const data = await response;
-    // console.log(data);
     return data;
   } catch (error) {
     console.error(error);
@@ -76,7 +74,6 @@ export const saveTeebotTime = async (teebotSearchParam: TeebotSearchParam) => {
       body: teebotSearchParam
     });
     const data = await response;
-    console.log(data);
   } catch (error) {
     console.error(error);
   }
