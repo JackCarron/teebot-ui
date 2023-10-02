@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { Amplify } from 'aws-amplify';
 
 import { getAwsExports } from './aws-exports';
+import { HashRouter } from 'react-router-dom';
 
 const bootstrap = async(): Promise<void> => {
   Amplify.configure(getAwsExports())
@@ -16,7 +17,9 @@ const bootstrap = async(): Promise<void> => {
   
   root.render(
     <React.StrictMode>
-      <App />
+      <HashRouter>
+        <App />
+      </HashRouter>
     </React.StrictMode>
   );
 }

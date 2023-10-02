@@ -1,42 +1,8 @@
 /* Common Styles */
-.LandingPage {
-  text-align: center;
-  margin: 0 auto;
-  font-family: 'Arial', sans-serif; /* Use a modern font */
+.LandingPage-content {
+  display: grid;
+  justify-content: center;
 }
-
-/* Update the LandingPage-header styles with vintage baseball jersey-style lettering */
-.LandingPage-header {
-  background-color: #121a46;
-  padding: 20px;
-  color: #fff;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* Style the header title with Lobster font for vintage cursive lettering */
-.LandingPage-header h1 {
-  font-family: 'Lobster', cursive; /* Use the Lobster font for vintage cursive style */
-  font-size: 36px; /* Adjust the font size as needed */
-  text-transform: uppercase; /* Optionally, make the text uppercase for a vintage look */
-  letter-spacing: 2px; /* Add letter-spacing for a vintage feel */
-}
-
-.LandingPage-header-image {
-  width: 200px;
-  filter: invert(100%);
-
-}
-
-/* Style the header subtitle */
-.LandingPage-header p {
-  font-size: 20px; /* Adjust the font size as needed */
-}
-
-
-
 
 /* Update the hero section styles without backdrop-filter */
 .hero {
@@ -131,12 +97,4 @@
 .feature p {
   font-size: 16px;
   color: #666;
-}
-
-/* Footer section styles */
-.LandingPage-footer {
-  background-color: #121a46;
-  padding: 20px 0;
-  color: #fff;
-  text-align: center;
 }

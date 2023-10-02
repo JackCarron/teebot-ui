@@ -1,15 +1,10 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
-import TeebotLogo from '../images/Teebot.png';
 import './styles.css';
 import './landingpage.css';
 
 const LandingPage: React.FC = () => {
   return (
     <div className="LandingPage">
-      <header className="LandingPage-header">
-        <img className="LandingPage-header-image" src="https://see.fontimg.com/api/renderfont4/nRpjJ/eyJyIjoiZnMiLCJoIjoxMzAsInciOjIwMDAsImZzIjo2NSwiZmdjIjoiIzAwMDAwMCIsImJnYyI6IiNGRkZGRkYiLCJ0IjoxfQ/VGVlYm90/kerney-script-personal-use-regular.png" alt="Jersey fonts" />
-      </header>
       <main className="LandingPage-content">
         <section className="hero">
           <div className='hero-text-container'>
@@ -17,8 +12,8 @@ const LandingPage: React.FC = () => {
             <p>Never miss out on your favorite tee times at the best courses</p>
           </div>
           <div>
-            <a href="/#/login_or_register" className="cta-button">
-              Get Started
+            <a href="/#/register" className="cta-button">
+              Find Tee Times
             </a>
           </div>
         </section>
@@ -37,9 +32,6 @@ const LandingPage: React.FC = () => {
           </div>
         </section>
       </main>
-      <footer className="LandingPage-footer">
-        <p>© 2023 Teebot. All rights reserved.</p>
-      </footer>
     </div>
   );
 };

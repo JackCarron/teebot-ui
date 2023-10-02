@@ -4,7 +4,6 @@ import { useHistory } from 'react-router-dom';
 import { ContactPreference, User } from '../types/User';
 import './createuser.css';
 import './styles.css';
-import TeebotLogo from '../images/Teebot.png';
 
 function CreateUser() {
   const history = useHistory();
@@ -50,8 +49,7 @@ function CreateUser() {
 
   return (
     <div className="CreateUser">
-      <img className="teebotLogo" src={TeebotLogo} alt="Teebot Logo" />
-      <h4>Welcome to Teebot! Register Now</h4>
+      <h3>Create Account</h3>
       <form className="CreateUser-form" onSubmit={handleSubmit}>
           <label>
             UserId:
