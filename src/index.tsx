@@ -17,9 +17,9 @@ const bootstrap = async(): Promise<void> => {
   
   root.render(
     <React.StrictMode>
-      <HashRouter>
-        <App />
-      </HashRouter>
+        <HashRouter>
+          <App />
+        </HashRouter>
     </React.StrictMode>
   );
 }

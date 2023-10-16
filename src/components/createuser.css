@@ -8,7 +8,6 @@
 
 /* Registration Form Container */
 .CreateUser-form {
-  /* margin: 50px; Adjust margin to match the landing page */
   max-width: 70%; /* Set a maximum width for the container */
   background-color: rgba(0, 0, 0, 0.6); /* Use the same background color as the landing page */
   border-radius: 8px; /* Optional: Add border-radius for rounded corners */
@@ -95,5 +94,9 @@
 
   .CreateUser-otpSection label {
     margin-bottom: 5px;
+  }
+
+  .login-page-button {
+    margin-top: 20px;
   }
 }

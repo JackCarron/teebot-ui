@@ -1,8 +1,19 @@
-.teebotLogo {
-    width: 200px; /* Adjust the size as needed */
-    height: auto;
-  }
-  
+.login-container{
+  text-align: center;
+  margin: 30px auto;
+  font-family: 'Arial', sans-serif;
+  color: #fff;
+}
+
+form {
+  max-width: 70%; /* Set a maximum width for the container */
+  background-color: rgba(0, 0, 0, 0.6); /* Use the same background color as the landing page */
+  border-radius: 8px; /* Optional: Add border-radius for rounded corners */
+  padding: 20px;
+  display: inline-block;
+  text-align: left; /* Match the text alignment with the landing page */
+}
+
   h4 {
     margin-top: 20px;
     font-size: 24px;
@@ -15,10 +26,14 @@
   label {
     display: block;
     margin-bottom: 10px;
+    width: auto;
+    margin-right: 15px;
   }
   
   input {
-    width: 100%;
+    /* width: 100%; */
+    width: auto;
+    /* overflow: hidden; */
     padding: 8px;
     font-size: 16px;
     border: 1px solid #ccc;

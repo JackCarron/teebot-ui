@@ -1,7 +1,8 @@
 import React, { useState, FormEvent } from 'react';
 import { Auth } from 'aws-amplify';
 import { useHistory } from 'react-router-dom';
-import TeebotLogo from '../images/Teebot.png';
+
+import './login.css';
 
 const Login = () => {
   const history = useHistory();
@@ -35,9 +36,9 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <img className="teebotLogo" src={TeebotLogo}></img>
-      <h4>Login to Teebot</h4><form onSubmit={handleSubmit}>
+    <div className='login-container'>
+      <h4>Login to Teebot</h4>
+      <form onSubmit={handleSubmit}>
         <label>
           Username:
           <input type="text" value={username} onChange={handleUsernameChange} />

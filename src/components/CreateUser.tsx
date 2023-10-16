@@ -26,7 +26,6 @@ function CreateUser() {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setShowOTP(true);
     try {
       const signUpResponse = await Auth.signUp({
         username: user.userId,
@@ -35,6 +34,7 @@ function CreateUser() {
           email: user.email
         },
       });
+      setShowOTP(true);
       console.log(signUpResponse);
     } catch (error) {
       console.error(error);
@@ -49,7 +49,9 @@ function CreateUser() {
 
   return (
     <div className="CreateUser">
-      <h3>Create Account</h3>
+      <div>
+        <h3>Create Account</h3>
+      </div>
       <form className="CreateUser-form" onSubmit={handleSubmit}>
           <label>
             UserId:
@@ -69,9 +71,13 @@ function CreateUser() {
             <input type="text" name="otp" value={user.otp} onChange={handleChange} />
           </label><button className="CreateUser-otpButton" onClick={submitOtp}>Submit OTP</button></>
          : undefined}
-        
+        <p>
+        </p>
         {!showOTP ? <button type="submit">Create User</button> : undefined}
       </form>
+      <div>
+          <a className='login-page-button' href="/#/login"><u>Already have an account? Click here</u></a>
+      </div>
     </div>
   );
 }
