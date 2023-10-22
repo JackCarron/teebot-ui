@@ -29,8 +29,8 @@
   box-sizing: border-box;
 }
 
-.CreateUser-form button {
-  margin-top: 20px; /* Adjust margin to match the landing page */
+/* .CreateUser-form button {
+  margin-top: 20px; /* Adjust margin to match the landing page 
   padding: 15px 30px;
   font-size: 20px;
   background-color: #121a46;
@@ -42,6 +42,11 @@
   cursor: pointer;
   outline: none;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+} */
+
+.snackbar-error {
+  background-color: red;
+  color: white;
 }
 
 /* Style the button on hover */

@@ -7,9 +7,9 @@ import CreateUser from './components/CreateUser';
 import LandingPage from './components/LandingPage';
 import LoginRegister from './components/LoginRegister';
 import UserHome from './components/UserHome';
-import { Dashboard } from './components/Dashboard';
+// import { Dashboard } from './components/Dashboard';
 import { Bookings } from './components/Bookings';
-import TeebotSearchWizard from './components/TeebotSearchWizard';
+import { Dashboard } from './components/Dashboard';
 
 const user: User = {
   userId: 'john.jack.carron@gmail.com',
@@ -40,11 +40,16 @@ const AppHeaderStyles: { [key: string] : AppHeader } =
   APP_HEADER_LEFT_SMALL: {
     appHeaderClass: 'App-header-left',
     appHeaderImageClass: 'App-header-image-sm'
+  },
+  APP_HEADER_NONE: {
+    appHeaderClass: 'App-header-none',
+    appHeaderImageClass: 'App-header-image-none'
   }
 }
 
 const pathToHeaderMap: {[key: string]: AppHeader} = {
   '/': AppHeaderStyles.APP_HEADER_CENTER_LARGE,
+  '/user_home': AppHeaderStyles.APP_HEADER_NONE,
   'default': AppHeaderStyles.APP_HEADER_LEFT_SMALL
 }
 
@@ -55,28 +60,26 @@ function App() {
   return (
     <div className="App">
       <div className="App-wrapper">
-      <header className={headerForPage.appHeaderClass}>
+      {headerForPage === AppHeaderStyles.APP_HEADER_NONE ? '' : <header className={headerForPage.appHeaderClass}>
         <p>
           <a href="/#/">
             <img className={headerForPage.appHeaderImageClass} src="https://see.fontimg.com/api/renderfont4/nRpjJ/eyJyIjoiZnMiLCJoIjoxMzAsInciOjIwMDAsImZzIjo2NSwiZmdjIjoiIzAwMDAwMCIsImJnYyI6IiNGRkZGRkYiLCJ0IjoxfQ/VGVlYm90/kerney-script-personal-use-regular.png" alt="Jersey fonts" />
           </a>
         </p>
       </header>
+      }
       <div className="App-body">
       <Switch>
         <Route path="/register" component={() => <CreateUser />} />
         <Route path="/login" component={() => <Login />} />
-        <Route path="/user_home" component={() => <UserHome/>} />
-        <Route path="/search" component={() => <TeebotSearchWizard />} />
+        <Route path="/user_home" component={() => <Dashboard/>} />
         <Route path="/teebot_times" component={() => <Dashboard />} />
         <Route path="/bookings" component={() => <Bookings />} />
         <Route path="/" component={() => <LandingPage />} />
       </Switch>
       </div>
       </div>
-      <footer className="App-footer">
-        <p>© 2023 Teebot. All rights reserved.</p>
-      </footer>
+
     </div>
   );
 }
